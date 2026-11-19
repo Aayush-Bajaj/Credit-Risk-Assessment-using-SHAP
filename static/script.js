@@ -6,7 +6,7 @@ const $ = (id) => document.getElementById(id);
 const f = (name) => form.elements[name];
 
 // FastAPI backend URL
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL = "/predict";
 
 // Auto-calculate loan percentage of income
 function calcPercent() {
