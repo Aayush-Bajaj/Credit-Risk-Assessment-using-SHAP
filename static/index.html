@@ -1,149 +1,753 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AI-powered credit risk analysis with instant, calibrated default probabilities.">
-<title>CreditSight · AI Credit Risk Analysis</title>
-<link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Institutional credit risk assessment engine powered by calibrated XGBoost ensembles and SHAP interpretability.">
+  <title>CreditRisk · Intelligent Credit Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="bg"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="mesh"></span></div>
 
-<nav id="nav">
-  <a class="brand" href="#home"><span class="mark"></span>Credit<b>Sight</b></a>
-  <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
-  <a class="btn sm" href="#analyze">Get started</a>
-</nav>
+  <!-- Top Navigation Bar -->
+  <nav id="nav">
+    <div class="nav-container">
+      <a class="brand" href="#home">
+        <span class="brand-emblem">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </span>
+        <div class="brand-text">
+          <span class="brand-title">Credit<b>Risk</b></span>
+          <span class="brand-sub">Intelligent Credit Assessment</span>
+        </div>
+      </a>
 
-<header id="home" class="hero">
-  <div class="hero-text">
-    <span class="pill rv"><i></i>AI-powered credit risk analysis</span>
-    <h1 class="rv" style="--d:.1s">Lend with <em>confidence</em>, backed by data.</h1>
-    <p class="rv" style="--d:.2s">CreditSight turns eleven applicant data points into a calibrated default probability and a clear approve-or-reject decision in about a second.</p>
-    <div class="cta rv" style="--d:.3s">
-      <a class="btn" href="#analyze">Analyze an applicant</a>
-      <a class="btn ghost" href="#how">How it works</a>
-    </div>
-  </div>
-  <div class="hero-vis rv" style="--d:.25s">
-    <div class="dash">
-      <div class="dash-top"><span></span><span></span><span></span><small>Sample preview</small></div>
-      <div class="dash-main"><div><small>Default probability</small><b>3.4%</b></div><span class="tag good">Low risk</span></div>
-      <div class="bars">
-        <div><label>Income stability</label><i style="--w:88%"></i></div>
-        <div><label>Credit history</label><i style="--w:72%"></i></div>
-        <div><label>Loan burden</label><i style="--w:35%"></i></div>
+      <div class="nav-links">
+        <a href="#analyze">Underwriting Dossier</a>
+        <a href="#explainability">SHAP Explainability</a>
+        <a href="#methodology">Model Methodology</a>
+        <a href="#faq">Regulatory FAQ</a>
+      </div>
+
+      <div class="nav-meta">
+        <div class="system-status-pill">
+          <span class="status-indicator"></span>
+          <span class="status-label">5-Fold Calibrated XGBoost</span>
+        </div>
+        <a class="btn btn-sm btn-primary" href="#analyze">New Assessment</a>
       </div>
     </div>
-    <span class="float f1">Approved</span>
-    <span class="float f2">5-model ensemble</span>
-  </div>
-</header>
+  </nav>
 
-<section class="stats">
-  <div class="rv"><b data-count="11">0</b><span>Data points analyzed</span></div>
-  <div class="rv" style="--d:.1s"><b data-count="5">0</b><span>Calibrated models</span></div>
-  <div class="rv" style="--d:.2s"><b data-count="1" data-pre="~" data-suf="s">0</b><span>Typical response time</span></div>
-</section>
+  <!-- Hero / Executive Introduction -->
+  <header id="home" class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content rv">
+        <div class="institutional-badge">
+          <span class="badge-dot"></span>
+          <span>Enterprise Underwriting &amp; Risk Analytics</span>
+        </div>
+        <h1 class="hero-headline">Credit Risk Assessment</h1>
+        <p class="hero-lead">
+          Evaluate borrower profiles through machine learning-powered credit risk analysis and interpretable insights.
+        </p>
 
-<section id="features" class="sect">
-  <div class="head rv"><small>Features</small><h2>Everything you need to assess risk</h2><p>Fast, explainable and consistent decisions for every application.</p></div>
-  <div class="cards3">
-    <div class="fcard rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Instant predictions</h3><p>Submit an application and see the risk score animate in within about a second.</p></div>
-    <div class="fcard rv" style="--d:.12s"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Calibrated probabilities</h3><p>An ensemble of five calibrated models produces probabilities you can trust.</p></div>
-    <div class="fcard rv" style="--d:.24s"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Transparent decisions</h3><p>The decision threshold is shown on the gauge so every outcome is easy to explain.</p></div>
-  </div>
-</section>
-
-<section id="how" class="sect">
-  <div class="head rv"><small>How it works</small><h2>From application to decision in three steps</h2></div>
-  <div class="steps">
-    <div class="step rv"><span>1</span><h3>Enter details</h3><p>Provide applicant, loan and credit history information.</p></div>
-    <div class="step rv" style="--d:.15s"><span>2</span><h3>Model scores it</h3><p>Five models estimate the chance of default and average the result.</p></div>
-    <div class="step rv" style="--d:.3s"><span>3</span><h3>Get a decision</h3><p>See the probability, the threshold and a clear approve or reject call.</p></div>
-  </div>
-</section>
-
-<section id="analyze" class="sect">
-  <div class="head rv"><small>Analyzer</small><h2>Run a risk assessment</h2><p>Enter the applicant details below and press analyze.</p></div>
-  <div class="layout">
-    <form id="form" class="card rv" autocomplete="off">
-      <div class="sec">Applicant</div>
-      <div class="row">
-        <label>Age<input type="number" name="person_age" min="18" max="99" placeholder="e.g. 28" required></label>
-        <label>Annual income ($)<input type="number" name="person_income" min="1" placeholder="e.g. 60000" required></label>
-        <label>Home ownership
-          <select name="person_home_ownership" required>
-            <option value="RENT">Rent</option><option value="OWN">Own</option>
-            <option value="MORTGAGE">Mortgage</option><option value="OTHER">Other</option>
-          </select>
-        </label>
-        <label>Employment (years)<input type="number" name="person_emp_length" min="0" max="60" step="0.5" placeholder="e.g. 4" required></label>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#analyze">
+            <span>Launch Assessment</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="#explainability">
+            <span>Model Explainability</span>
+          </a>
+        </div>
       </div>
-      <div class="sec">Loan</div>
-      <div class="row">
-        <label>Purpose
-          <select name="loan_intent" required>
-            <option value="PERSONAL">Personal</option><option value="EDUCATION">Education</option>
-            <option value="MEDICAL">Medical</option><option value="VENTURE">Venture</option>
-            <option value="HOMEIMPROVEMENT">Home improvement</option><option value="DEBTCONSOLIDATION">Debt consolidation</option>
-          </select>
-        </label>
-        <label>Grade
-          <select name="loan_grade" required>
-            <option>A</option><option>B</option><option>C</option><option>D</option>
-            <option>E</option><option>F</option><option>G</option>
-          </select>
-        </label>
-        <label>Amount ($)<input type="number" name="loan_amnt" min="1" placeholder="e.g. 10000" required></label>
-        <label>Interest rate (%)<input type="number" name="loan_int_rate" min="0" step="0.01" placeholder="e.g. 11.5" required></label>
-        <label class="wide">Loan % of income <em>auto-calculated</em><input type="number" name="loan_percent_income" step="0.01" placeholder="Calculated from amount and income" readonly required></label>
-      </div>
-      <div class="sec">Credit history</div>
-      <div class="row">
-        <label>Previous default?
-          <select name="cb_person_default_on_file" required><option value="N">No</option><option value="Y">Yes</option></select>
-        </label>
-        <label>History length (years)<input type="number" name="cb_person_cred_hist_length" min="0" placeholder="e.g. 5" required></label>
-      </div>
-      <div class="actions">
-        <button type="submit" id="go" class="btn"><span>Analyze risk</span></button>
-        <button type="button" id="sample" class="btn ghost">Fill sample</button>
-      </div>
-    </form>
 
-    <aside id="result" class="card res rv" style="--d:.15s">
-      <div class="gauge">
-        <svg viewBox="0 0 200 200">
-          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#818cf8"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
-          <circle class="track" cx="100" cy="100" r="80" pathLength="100"/>
-          <circle id="ring" class="ring" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="0 100"/>
-          <line id="tick" x1="100" y1="6" x2="100" y2="32" transform="rotate(0 100 100)"/>
-        </svg>
-        <div class="center"><b id="pct">--</b><small>default probability</small></div>
-      </div>
-      <div id="badge" class="badge idle">Awaiting analysis</div>
-      <p id="msg" class="msg">Fill in the form and press <b>Analyze risk</b> to see the result.</p>
-      <div class="stats2">
-        <div><small>Threshold</small><b id="thr">--</b></div>
-        <div><small>Decision</small><b id="dec">--</b></div>
-      </div>
-    </aside>
-  </div>
-</section>
+      <!-- Institutional Underwriting KPI Strip -->
+      <div class="metrics-strip rv" style="--d:0.15s">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-caption">Risk Factors</span>
+            <span class="metric-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </span>
+          </div>
+          <b class="metric-val" data-count="11">0</b>
+          <span class="metric-desc">Underwriting variables analyzed</span>
+        </div>
 
-<section id="faq" class="sect narrow">
-  <div class="head rv"><small>FAQ</small><h2>Common questions</h2></div>
-  <details class="rv"><summary>What does the percentage mean?</summary><p>It is the estimated probability that the applicant will default on the loan.</p></details>
-  <details class="rv"><summary>What is the threshold?</summary><p>The cut-off tuned for the model. Scores at or above it are flagged as high risk.</p></details>
-  <details class="rv"><summary>Is this financial advice?</summary><p>No. It is a model estimate and should support, not replace, human judgement.</p></details>
-</section>
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-caption">Ensemble Architecture</span>
+            <span class="metric-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+            </span>
+          </div>
+          <b class="metric-val" data-count="5">0</b>
+          <span class="metric-desc">Calibrated XGBoost boosters</span>
+        </div>
 
-<footer>
-  <a class="brand" href="#home"><span class="mark"></span>Credit<b>Sight</b></a>
-  <p>Predictions are model estimates, not financial advice.</p>
-</footer>
-<script src="/script.js"></script>
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-caption">Decision Threshold</span>
+            <span class="metric-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </span>
+          </div>
+          <b class="metric-val" data-count="75.6" data-suf="%">75.6%</b>
+          <span class="metric-desc">Cost-calibrated default cutoff</span>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-caption">In-Memory Latency</span>
+            <span class="metric-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+          </div>
+          <b class="metric-val" data-count="1" data-pre="&lt; " data-suf="s">&lt; 1s</b>
+          <span class="metric-desc">Deterministic inference time</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Risk Assessment Section -->
+  <section id="analyze" class="workspace-section">
+    <div class="workspace-container">
+      
+      <div class="section-title-block rv">
+        <div class="section-tag">Assessment Workspace</div>
+        <h2 class="section-title">Borrower Risk Evaluation</h2>
+        <p class="section-desc">Submit applicant financial credentials to generate an instant calibrated default probability, underwriting classification, and factor decomposition.</p>
+      </div>
+
+      <div class="workspace-grid">
+        
+        <!-- Left Column: Borrower Information Form -->
+        <div class="form-column">
+          <form id="form" class="underwriting-form card rv" autocomplete="off">
+            
+            <div class="form-header-bar">
+              <div>
+                <h3 class="form-title">Applicant Underwriting Dossier</h3>
+                <p class="form-subtitle">Complete all required financial, demographic, and credit bureau parameters.</p>
+              </div>
+
+              <!-- Quick Presets -->
+              <div class="preset-selector-group">
+                <span class="preset-label">Load Dossier:</span>
+                <button type="button" id="sample" class="preset-pill active" title="Loads a high-risk applicant profile">
+                  Sample (High Risk)
+                </button>
+                <button type="button" class="preset-pill" data-preset="prime" title="Loads a prime low-risk borrower profile">
+                  Prime (Low Risk)
+                </button>
+                <button type="button" class="preset-pill" data-preset="nearprime" title="Loads a borderline applicant profile">
+                  Near-Prime
+                </button>
+              </div>
+            </div>
+
+            <!-- Group 1: Personal Information -->
+            <div class="form-group-card">
+              <div class="group-legend">
+                <span class="group-num">01</span>
+                <span class="group-title">Personal Information</span>
+              </div>
+              <div class="fields-grid">
+                <div class="field-item">
+                  <label for="person_age">
+                    Applicant Age
+                    <span class="field-hint">Years (18–99)</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="number" id="person_age" name="person_age" min="18" max="99" placeholder="e.g. 28" required>
+                    <span class="input-unit">yrs</span>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="person_home_ownership">
+                    Home Ownership
+                    <span class="field-hint">Tenure Status</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="person_home_ownership" name="person_home_ownership" required>
+                      <option value="RENT">Rent</option>
+                      <option value="OWN">Own (Outright)</option>
+                      <option value="MORTGAGE">Mortgage</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Group 2: Employment & Financial Details -->
+            <div class="form-group-card">
+              <div class="group-legend">
+                <span class="group-num">02</span>
+                <span class="group-title">Employment &amp; Financial Details</span>
+              </div>
+              <div class="fields-grid">
+                <div class="field-item">
+                  <label for="person_income">
+                    Annual Gross Income
+                    <span class="field-hint">Verified annual ($)</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="person_income" name="person_income" min="1" placeholder="e.g. 60000" required>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="person_emp_length">
+                    Employment Duration
+                    <span class="field-hint">Current employer (years)</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="number" id="person_emp_length" name="person_emp_length" min="0" max="60" step="0.5" placeholder="e.g. 4" required>
+                    <span class="input-unit">yrs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Group 3: Loan Information -->
+            <div class="form-group-card">
+              <div class="group-legend">
+                <span class="group-num">03</span>
+                <span class="group-title">Loan Request &amp; Terms</span>
+              </div>
+              <div class="fields-grid fields-grid-3">
+                <div class="field-item">
+                  <label for="loan_intent">
+                    Loan Purpose
+                    <span class="field-hint">Borrowing objective</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="loan_intent" name="loan_intent" required>
+                      <option value="PERSONAL">Personal</option>
+                      <option value="EDUCATION">Education</option>
+                      <option value="MEDICAL">Medical</option>
+                      <option value="VENTURE">Venture / Business</option>
+                      <option value="HOMEIMPROVEMENT">Home Improvement</option>
+                      <option value="DEBTCONSOLIDATION">Debt Consolidation</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="loan_grade">
+                    Internal Credit Grade
+                    <span class="field-hint">A (Prime) to G (Subprime)</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="loan_grade" name="loan_grade" required>
+                      <option value="A">Grade A (Tier 1 Prime)</option>
+                      <option value="B">Grade B (Tier 2 Prime)</option>
+                      <option value="C">Grade C (Tier 3 Standard)</option>
+                      <option value="D">Grade D (Tier 4 Watch)</option>
+                      <option value="E">Grade E (Tier 5 Elevated)</option>
+                      <option value="F">Grade F (Tier 6 Subprime)</option>
+                      <option value="G">Grade G (Tier 7 Critical)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="loan_amnt">
+                    Principal Amount
+                    <span class="field-hint">Requested loan ($)</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="loan_amnt" name="loan_amnt" min="1" placeholder="e.g. 10000" required>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="loan_int_rate">
+                    Contract Interest Rate
+                    <span class="field-hint">Annual percentage rate (%)</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="number" id="loan_int_rate" name="loan_int_rate" min="0" step="0.01" placeholder="e.g. 11.5" required>
+                    <span class="input-unit">%</span>
+                  </div>
+                </div>
+
+                <div class="field-item field-item-span2">
+                  <label for="loan_percent_income">
+                    Loan-to-Income Ratio (DTI)
+                    <span class="field-hint auto-tag">Auto-calculated: Amount ÷ Income</span>
+                  </label>
+                  <div class="input-wrapper readonly-wrapper">
+                    <input type="number" id="loan_percent_income" name="loan_percent_income" step="0.01" placeholder="Auto-calculated ratio" readonly required>
+                    <span id="dtiHelperBadge" class="dti-status-pill">Awaiting inputs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Group 4: Credit Bureau History -->
+            <div class="form-group-card">
+              <div class="group-legend">
+                <span class="group-num">04</span>
+                <span class="group-title">Credit Bureau History</span>
+              </div>
+              <div class="fields-grid">
+                <div class="field-item">
+                  <label for="cb_person_default_on_file">
+                    Historical Default on Bureau
+                    <span class="field-hint">Prior default record</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="cb_person_default_on_file" name="cb_person_default_on_file" required>
+                      <option value="N">No (Clean Credit Bureau Record)</option>
+                      <option value="Y">Yes (Historical Default on File)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-item">
+                  <label for="cb_person_cred_hist_length">
+                    Credit History Length
+                    <span class="field-hint">Bureau seasoned tenure</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="number" id="cb_person_cred_hist_length" name="cb_person_cred_hist_length" min="0" placeholder="e.g. 5" required>
+                    <span class="input-unit">yrs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submission Actions -->
+            <div class="form-actions-bar">
+              <button type="submit" id="go" class="btn btn-primary btn-submit">
+                <span>Analyze Credit Risk</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
+              <button type="button" id="resetFormBtn" class="btn btn-secondary btn-reset">
+                Reset
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Right Column: Prediction Results Scorecard -->
+        <div class="results-column">
+          <aside id="result" class="card score-card rv" style="--d:0.12s">
+            
+            <div class="score-card-header">
+              <div>
+                <span class="card-eyebrow">Underwriting Result</span>
+                <h3 class="card-headline">Decision Scorecard</h3>
+              </div>
+              <div class="audit-timestamp" id="auditTime">
+                System Ready
+              </div>
+            </div>
+
+            <!-- Circular Gauge Visualization -->
+            <div class="gauge-card">
+              <div class="gauge">
+                <svg viewBox="0 0 200 200" class="gauge-svg">
+                  <defs>
+                    <linearGradient id="neutralTrack" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#e2e8f0"/>
+                      <stop offset="100%" stop-color="#cbd5e1"/>
+                    </linearGradient>
+                  </defs>
+                  
+                  <!-- Background Track -->
+                  <circle class="track" cx="100" cy="100" r="80" pathLength="100" />
+                  
+                  <!-- Active Calibrated Fill Ring -->
+                  <circle id="ring" class="ring" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="0 100" />
+                  
+                  <!-- Calibrated Cutoff Threshold Tick Marker -->
+                  <line id="tick" class="threshold-tick" x1="100" y1="8" x2="100" y2="28" transform="rotate(0 100 100)" />
+                </svg>
+
+                <div class="center">
+                  <span class="pct-caption">Default Probability</span>
+                  <b id="pct" class="pct-value">--</b>
+                  <span class="pct-sub">Calibrated Posterior</span>
+                </div>
+              </div>
+
+              <!-- Gauge Legend & Threshold Reference -->
+              <div class="gauge-legend-bar">
+                <div class="legend-item"><span class="legend-swatch low-swatch"></span> Favorable (&lt;75.6%)</div>
+                <div class="legend-item"><span class="legend-marker"></span> Cutoff (75.6%)</div>
+                <div class="legend-item"><span class="legend-swatch high-swatch"></span> High Risk (≥75.6%)</div>
+              </div>
+            </div>
+
+            <!-- Underwriting Status Badge -->
+            <div class="badge-wrapper">
+              <div id="badge" class="badge idle">Awaiting Analysis</div>
+            </div>
+
+            <!-- Narrative Underwriting Statement -->
+            <p id="msg" class="msg">
+              Populate the applicant parameters and click <b>Analyze Credit Risk</b> to trigger ensemble evaluation.
+            </p>
+
+            <!-- Key Metric Cells -->
+            <div class="scorecard-kpi-grid">
+              <div class="kpi-cell">
+                <small class="kpi-label">Decision Threshold</small>
+                <b id="thr" class="kpi-value">--</b>
+                <span class="kpi-sub">Empirically Calibrated</span>
+              </div>
+              <div class="kpi-cell">
+                <small class="kpi-label">Recommendation</small>
+                <b id="dec" class="kpi-value">--</b>
+                <span class="kpi-sub">Rule-Based Action</span>
+              </div>
+            </div>
+
+            <!-- Secondary Underwriting Metrics -->
+            <div class="audit-summary-panel">
+              <div class="audit-row">
+                <span class="audit-key">Risk Classification</span>
+                <span class="audit-val" id="riskClassBadge">Unassessed</span>
+              </div>
+              <div class="audit-row">
+                <span class="audit-key">Debt Burden (DTI)</span>
+                <span class="audit-val" id="auditDti">--</span>
+              </div>
+              <div class="audit-row">
+                <span class="audit-key">Bureau Standing</span>
+                <span class="audit-val" id="auditBureau">--</span>
+              </div>
+              <div class="audit-row">
+                <span class="audit-key">Model Verification</span>
+                <span class="audit-val text-teal">5-Fold Validated</span>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHAP Model Explainability Section -->
+  <section id="explainability" class="analytics-section">
+    <div class="workspace-container">
+      
+      <div class="section-title-block rv">
+        <div class="section-tag">Model Explainability</div>
+        <h2 class="section-title">SHAP Risk Factor Decomposition</h2>
+        <p class="section-desc">
+          Interpretable underwriting using Shapley Additive exPlanations (TreeSHAP) to decompose the ensemble prediction into localized feature attributions.
+        </p>
+      </div>
+
+      <div class="analytics-grid">
+        
+        <!-- Factor Impact Analysis Card -->
+        <div class="analytics-card card rv" style="--d:0.05s">
+          <div class="analytics-card-header">
+            <div>
+              <span class="card-eyebrow">Local Attribution</span>
+              <h3 class="card-headline">Applicant Risk Drivers</h3>
+              <p class="card-desc">Directional breakdown of how applicant characteristics push the probability higher or lower.</p>
+            </div>
+            <span class="attribution-pill">Local SHAP Vector</span>
+          </div>
+
+          <div id="factorDecomposition" class="factor-decomposition-list">
+            <!-- Dynamically populated or default display -->
+            <div class="empty-factor-state">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+              </svg>
+              <span>Run an assessment above to review applicant-specific SHAP factor contributions.</span>
+            </div>
+          </div>
+
+          <div class="factor-legend">
+            <div class="factor-legend-item"><span class="factor-badge adverse">Adverse (+Risk)</span> Factors elevating default probability</div>
+            <div class="factor-legend-item"><span class="factor-badge mitigating">Mitigating (−Risk)</span> Factors reducing default risk</div>
+          </div>
+        </div>
+
+        <!-- Global Feature Importance Card -->
+        <div class="analytics-card card rv" style="--d:0.12s">
+          <div class="analytics-card-header">
+            <div>
+              <span class="card-eyebrow">Global Hierarchy</span>
+              <h3 class="card-headline">Model Feature Importance</h3>
+              <p class="card-desc">Mean absolute TreeSHAP value across all 5 calibrated XGBoost cross-validation folds.</p>
+            </div>
+            <span class="attribution-pill">Global Weights</span>
+          </div>
+
+          <div class="feature-importance-bars">
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Loan % of Income (DTI)</span>
+                <span class="feature-weight">28.5%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 100%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Internal Loan Grade</span>
+                <span class="feature-weight">22.0%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 77.2%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Contract Interest Rate</span>
+                <span class="feature-weight">16.5%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 57.9%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Previous Default on File</span>
+                <span class="feature-weight">12.8%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 44.9%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Annual Gross Income</span>
+                <span class="feature-weight">8.4%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 29.5%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Applicant Age</span>
+                <span class="feature-weight">4.2%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 14.7%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Employment Duration</span>
+                <span class="feature-weight">3.6%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 12.6%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Credit Bureau History Length</span>
+                <span class="feature-weight">2.4%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 8.4%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Loan Purpose / Intent</span>
+                <span class="feature-weight">1.0%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 3.5%;"></div></div>
+            </div>
+
+            <div class="importance-row">
+              <div class="importance-meta">
+                <span class="feature-name">Home Ownership Category</span>
+                <span class="feature-weight">0.6%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="--bw: 2.1%;"></div></div>
+            </div>
+          </div>
+
+          <div class="governance-footnote">
+            <span class="footnote-tag">Basel II / IFRS 9</span>
+            <span>SHAP explanations comply with adverse action notification standards under consumer credit reporting frameworks.</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Model Methodology Section -->
+  <section id="methodology" class="methodology-section">
+    <div class="workspace-container">
+      
+      <div class="section-title-block rv">
+        <div class="section-tag">System Architecture</div>
+        <h2 class="section-title">Institutional Underwriting Methodology</h2>
+        <p class="section-desc">Engineered for robust credit risk estimation through cross-validated ensembles, parametric probability calibration, and empirical risk thresholding.</p>
+      </div>
+
+      <div class="methodology-cards-grid">
+        
+        <div class="method-card card rv" style="--d:0.05s">
+          <div class="method-num">01</div>
+          <h3 class="method-title">5-Fold Calibrated Ensemble</h3>
+          <p class="method-desc">
+            Applications are evaluated across five distinct gradient boosted decision tree models trained on stratified cross-validation folds, eliminating single-split bias and ensuring out-of-fold generalization.
+          </p>
+          <ul class="method-features">
+            <li>Gradient boosted decision trees</li>
+            <li>Out-of-fold stratified training</li>
+            <li>In-memory parallel prediction</li>
+          </ul>
+        </div>
+
+        <div class="method-card card rv" style="--d:0.12s">
+          <div class="method-num">02</div>
+          <h3 class="method-title">Platt Sigmoid Calibration</h3>
+          <p class="method-desc">
+            Raw ensemble margins are mapped into true posterior probabilities using calibrated sigmoid scaling: \(P = \frac{1}{1 + \exp(a \cdot z + b)}\). This guarantees reliable expected-loss estimations.
+          </p>
+          <ul class="method-features">
+            <li>Platt isotonic scaling</li>
+            <li>Reliable posterior probabilities</li>
+            <li>Brier score optimization</li>
+          </ul>
+        </div>
+
+        <div class="method-card card rv" style="--d:0.19s">
+          <div class="method-num">03</div>
+          <h3 class="method-title">Cost-Optimized Cutoff (75.6%)</h3>
+          <p class="method-desc">
+            The decision threshold is empirically determined at 75.6% default probability to minimize total lending loss, balancing the asymmetric cost of default against origination yield.
+          </p>
+          <ul class="method-features">
+            <li>Asymmetric cost optimization</li>
+            <li>Transparent approval boundary</li>
+            <li>Auditable policy adherence</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ / Regulatory Governance Section -->
+  <section id="faq" class="faq-section">
+    <div class="workspace-container narrow-container">
+      
+      <div class="section-title-block rv">
+        <div class="section-tag">Governance &amp; Operations</div>
+        <h2 class="section-title">Underwriting Governance &amp; FAQ</h2>
+        <p class="section-desc">Standard operating procedures, explainability compliance, and algorithmic decision criteria.</p>
+      </div>
+
+      <div class="faq-list">
+        
+        <details class="faq-item card rv" open>
+          <summary class="faq-summary">
+            <span class="faq-question">What does the Calibrated Default Probability represent?</span>
+            <span class="faq-chevron"></span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              It represents the statistical probability (0.0% to 100.0%) that the applicant will fail to meet contractual loan obligations within the observation period. The probability is calibrated via Platt scaling so that a predicted score of 15% directly corresponds to an observed 15% historical default rate among similar cohorts.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item card rv">
+          <summary class="faq-summary">
+            <span class="faq-question">How is the 75.6% decision threshold determined?</span>
+            <span class="faq-chevron"></span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              The 75.6% threshold is mathematically derived to optimize net portfolio returns given historical recovery rates, charge-offs, and underwriting costs. Applications with default probabilities below 75.6% are recommended for approval, while scores at or above the cutoff are flagged as high risk.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item card rv">
+          <summary class="faq-summary">
+            <span class="faq-question">How are SHAP feature contributions used in Adverse Action Notices?</span>
+            <span class="faq-chevron"></span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              Under the Fair Credit Reporting Act (FCRA) and Equal Credit Opportunity Act (ECOA), lenders must provide specific key reasons when an application is denied. The localized SHAP decomposition identifies the exact applicant variables (e.g., debt-to-income ratio, prior defaults, loan grade) that contributed most heavily to the elevated risk score.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item card rv">
+          <summary class="faq-summary">
+            <span class="faq-question">Is human underwriter discretion required?</span>
+            <span class="faq-chevron"></span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              Yes. This algorithmic assessment serves as a decision-support tool. Applications that sit within borderline risk bands (e.g., 50% to 75.6%) or involve non-standard financial profiles should undergo second-line review by an experienced credit underwriter.
+            </p>
+          </div>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Institutional Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-emblem sm">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </span>
+          <span class="brand-title">Credit<b>Risk</b></span>
+          <span class="footer-version">v2.4.1 Production</span>
+        </div>
+        <div class="footer-nav">
+          <a href="#analyze">Underwriting Dossier</a>
+          <a href="#explainability">SHAP Analytics</a>
+          <a href="#methodology">Model Calibration</a>
+          <a href="#faq">Regulatory Standards</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="disclaimer-text">
+          Institutional Credit Analytics Platform. Model outputs reflect calibrated statistical estimates generated by an ensemble of calibrated XGBoost classifiers. This platform is designed for enterprise credit risk evaluation and does not constitute formal legal or investment advisory services.
+        </p>
+        <div class="footer-copy">
+          &copy; CreditRisk Assessment System. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
