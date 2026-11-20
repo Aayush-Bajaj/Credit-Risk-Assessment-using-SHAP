@@ -1,4 +1,3 @@
-
 const form = document.getElementById("form");
 const btn = document.getElementById("go");
 
@@ -74,10 +73,7 @@ function showResult(result) {
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      ring.setAttribute(
-        "stroke-dasharray",
-        `${probability} 100`
-      );
+      ring.setAttribute("stroke-dasharray", `${probability} 100`);
     });
   });
 
@@ -94,15 +90,13 @@ function showResult(result) {
 
   badge.className = "badge " + (highRisk ? "high" : "low");
 
-  badge.textContent =
-    (highRisk ? "⚠ " : "✓ ") + result.Result;
+  badge.textContent = (highRisk ? "⚠ " : "✓ ") + result.Result;
 
   $("msg").innerHTML = highRisk
     ? `This applicant is <b>likely to default</b>. The risk is above the decision threshold (the white mark on the ring).`
     : `This applicant is <b>unlikely to default</b>. The risk is below the decision threshold (the white mark on the ring).`;
 
-  $("thr").textContent =
-    (result.threshold * 100).toFixed(1) + "%";
+  $("thr").textContent = (result.threshold * 100).toFixed(1) + "%";
 
   $("dec").textContent = highRisk ? "Reject" : "Approve";
 }
@@ -128,8 +122,7 @@ form.addEventListener("submit", async (event) => {
   for (const el of form.elements) {
     if (!el.name) continue;
 
-    data[el.name] =
-      el.type === "number" ? Number(el.value) : el.value;
+    data[el.name] = el.type === "number" ? Number(el.value) : el.value;
   }
 
   // Loading state
@@ -141,11 +134,9 @@ form.addEventListener("submit", async (event) => {
     // Send request to FastAPI
     const response = await fetch(API_URL, {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json"
       },
-
       body: JSON.stringify(data)
     });
 
@@ -153,25 +144,46 @@ form.addEventListener("submit", async (event) => {
 
     // Handle API errors
     if (!response.ok) {
-      throw new Error(
-        result.detail || `Server error: ${response.status}`
-      );
+      throw new Error(result.detail || `Server error: ${response.status}`);
     }
 
     // Display prediction
     showResult(result);
-
   } catch (error) {
     console.error("Prediction error:", error);
 
-    showError(
-      "Could not get a prediction: " + error.message
-    );
-
+    showError("Could not get a prediction: " + error.message);
   } finally {
     // Reset button
     btn.disabled = false;
     btn.classList.remove("loading");
     btn.querySelector("span").textContent = "Analyze risk";
   }
+});
+
+// ---- Website extras: nav, scroll reveal, counters, scroll to result ----
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 20), { passive: true });
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((en) => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add("in");
+    const c = en.target.querySelector("[data-count]");
+    if (c) {
+      const to = +c.dataset.count, t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / 1500, 1);
+        c.textContent = (c.dataset.pre || "") + Math.round(to * (1 - Math.pow(1 - p, 3))) + (c.dataset.suf || "");
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+    io.unobserve(en.target);
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+
+form.addEventListener("submit", () => {
+  if (innerWidth < 900) setTimeout(() => $("result").scrollIntoView({ behavior: "smooth", block: "center" }), 600);
 });

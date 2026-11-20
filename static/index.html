@@ -3,93 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Credit Risk Analyzer</title>
+<title>RiskLens · AI Credit Risk Analyzer</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="bg"><span class="blob b1"></span><span class="blob b2"></span><span class="grid"></span></div>
 
-<header class="top">
-  <div class="logo">◆</div>
-  <div>
-    <h1>Credit Risk <span>Analyzer</span></h1>
-    <p>AI-powered loan default prediction</p>
+<nav id="nav">
+  <a class="brand" href="#home"><i>◆</i>Risk<b>Lens</b></a>
+  <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
+  <a class="btn sm" href="#analyze"><span>Start analysis</span></a>
+</nav>
+
+<header id="home" class="hero">
+  <div class="hero-text">
+    <span class="pill rv"><i></i> AI-powered credit scoring</span>
+    <h1 class="rv" style="--d:.1s">Know the risk <em>before</em> you lend.</h1>
+    <p class="rv" style="--d:.2s">Get an instant, calibrated default probability for any loan applicant. Eleven data points, five models, one clear decision.</p>
+    <div class="cta rv" style="--d:.3s">
+      <a class="btn" href="#analyze"><span>Analyze an applicant →</span></a>
+      <a class="ghost" href="#how">See how it works</a>
+    </div>
+  </div>
+  <div class="hero-vis rv" style="--d:.25s">
+    <div class="orbit"></div><div class="orbit o2"></div>
+    <div class="mock">
+      <small>Sample preview</small>
+      <div class="donut"><b>3.4%</b></div>
+      <span class="chip ok">✓ Low Risk</span>
+    </div>
+    <span class="float f1">✓ Approve</span>
+    <span class="float f2">Grade A</span>
+    <span class="float f3">⚡ 1s result</span>
   </div>
 </header>
 
-<main class="layout">
-  <form id="form" class="card" autocomplete="off">
-    <div class="sec">Applicant</div>
-    <div class="row">
-      <label>Age<input type="number" name="person_age" min="18" max="99" required></label>
-      <label>Annual income ($)<input type="number" name="person_income" min="1" required></label>
-      <label>Home ownership
-        <select name="person_home_ownership" required>
-          <option value="RENT">Rent</option><option value="OWN">Own</option>
-          <option value="MORTGAGE">Mortgage</option><option value="OTHER">Other</option>
-        </select>
-      </label>
-      <label>Employment (years)<input type="number" name="person_emp_length" min="0" max="60" step="0.5" required></label>
-    </div>
+<section class="stats">
+  <div class="rv"><b data-count="11">0</b><span>Data points analyzed</span></div>
+  <div class="rv" style="--d:.1s"><b data-count="5">0</b><span>Calibrated XGBoost models</span></div>
+  <div class="rv" style="--d:.2s"><b data-count="1" data-pre="~" data-suf="s">0</b><span>Typical response time</span></div>
+</section>
 
-    <div class="sec">Loan</div>
-    <div class="row">
-      <label>Purpose
-        <select name="loan_intent" required>
-          <option value="PERSONAL">Personal</option><option value="EDUCATION">Education</option>
-          <option value="MEDICAL">Medical</option><option value="VENTURE">Venture</option>
-          <option value="HOMEIMPROVEMENT">Home improvement</option><option value="DEBTCONSOLIDATION">Debt consolidation</option>
-        </select>
-      </label>
-      <label>Grade
-        <select name="loan_grade" required>
-          <option>A</option><option>B</option><option>C</option><option>D</option>
-          <option>E</option><option>F</option><option>G</option>
-        </select>
-      </label>
-      <label>Amount ($)<input type="number" name="loan_amnt" min="1" required></label>
-      <label>Interest rate (%)<input type="number" name="loan_int_rate" min="0" step="0.01" required></label>
-      <label class="wide">Loan % of income <em>(auto)</em><input type="number" name="loan_percent_income" step="0.01" readonly required></label>
-    </div>
+<section id="features" class="sect">
+  <div class="head rv"><small>Features</small><h2>Built for confident decisions</h2></div>
+  <div class="cards3">
+    <div class="fcard rv"><div class="ic">⚡</div><h3>Instant predictions</h3><p>Submit an application and watch the risk score animate in within about a second.</p></div>
+    <div class="fcard rv" style="--d:.12s"><div class="ic">🎯</div><h3>Calibrated probabilities</h3><p>An ensemble of five calibrated models gives probabilities you can actually trust.</p></div>
+    <div class="fcard rv" style="--d:.24s"><div class="ic">🛡️</div><h3>Transparent decisions</h3><p>The decision threshold is shown right on the gauge, so every outcome is easy to explain.</p></div>
+  </div>
+</section>
 
-    <div class="sec">Credit history</div>
-    <div class="row">
-      <label>Previous default?
-        <select name="cb_person_default_on_file" required><option value="N">No</option><option value="Y">Yes</option></select>
-      </label>
-      <label>History length (years)<input type="number" name="cb_person_cred_hist_length" min="0" required></label>
-    </div>
+<section id="how" class="sect">
+  <div class="head rv"><small>How it works</small><h2>Three simple steps</h2></div>
+  <div class="steps">
+    <div class="step rv"><span>1</span><h3>Enter details</h3><p>Fill in applicant, loan and credit history information.</p></div>
+    <div class="step rv" style="--d:.15s"><span>2</span><h3>Model scores it</h3><p>Five models estimate the chance of default and average the result.</p></div>
+    <div class="step rv" style="--d:.3s"><span>3</span><h3>Get a decision</h3><p>See the probability, the threshold and a clear approve or reject call.</p></div>
+  </div>
+</section>
 
-    <div class="actions">
-      <button type="submit" id="go" class="btn"><span>Analyze risk</span></button>
-      <button type="button" id="sample" class="ghost">Fill sample</button>
-    </div>
-  </form>
+<section id="analyze" class="sect">
+  <div class="head rv"><small>Analyzer</small><h2>Run a risk assessment</h2></div>
+  <div class="layout">
+    <form id="form" class="card rv" autocomplete="off">
+      <div class="sec">Applicant</div>
+      <div class="row">
+        <label>Age<input type="number" name="person_age" min="18" max="99" placeholder="e.g. 28" required></label>
+        <label>Annual income ($)<input type="number" name="person_income" min="1" placeholder="e.g. 60000" required></label>
+        <label>Home ownership
+          <select name="person_home_ownership" required>
+            <option value="RENT">Rent</option><option value="OWN">Own</option>
+            <option value="MORTGAGE">Mortgage</option><option value="OTHER">Other</option>
+          </select>
+        </label>
+        <label>Employment (years)<input type="number" name="person_emp_length" min="0" max="60" step="0.5" placeholder="e.g. 4" required></label>
+      </div>
+      <div class="sec">Loan</div>
+      <div class="row">
+        <label>Purpose
+          <select name="loan_intent" required>
+            <option value="PERSONAL">Personal</option><option value="EDUCATION">Education</option>
+            <option value="MEDICAL">Medical</option><option value="VENTURE">Venture</option>
+            <option value="HOMEIMPROVEMENT">Home improvement</option><option value="DEBTCONSOLIDATION">Debt consolidation</option>
+          </select>
+        </label>
+        <label>Grade
+          <select name="loan_grade" required>
+            <option>A</option><option>B</option><option>C</option><option>D</option>
+            <option>E</option><option>F</option><option>G</option>
+          </select>
+        </label>
+        <label>Amount ($)<input type="number" name="loan_amnt" min="1" placeholder="e.g. 10000" required></label>
+        <label>Interest rate (%)<input type="number" name="loan_int_rate" min="0" step="0.01" placeholder="e.g. 11.5" required></label>
+        <label class="wide">Loan % of income <em>(auto-calculated)</em><input type="number" name="loan_percent_income" step="0.01" readonly required></label>
+      </div>
+      <div class="sec">Credit history</div>
+      <div class="row">
+        <label>Previous default?
+          <select name="cb_person_default_on_file" required><option value="N">No</option><option value="Y">Yes</option></select>
+        </label>
+        <label>History length (years)<input type="number" name="cb_person_cred_hist_length" min="0" placeholder="e.g. 5" required></label>
+      </div>
+      <div class="actions">
+        <button type="submit" id="go" class="btn"><span>Analyze risk</span></button>
+        <button type="button" id="sample" class="ghost">Fill sample</button>
+      </div>
+    </form>
 
-  <aside id="result" class="card res">
-    <div class="gauge">
-      <svg viewBox="0 0 200 200">
-        <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#e6e8ec"/><stop offset="1" stop-color="#9da1a8"/>
-          </linearGradient>
-        </defs>
-        <circle class="track" cx="100" cy="100" r="80" pathLength="100"/>
-        <circle id="ring" class="ring" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="0 100"/>
-        <line id="tick" x1="100" y1="6" x2="100" y2="32" transform="rotate(0 100 100)"/>
-      </svg>
-      <div class="center"><b id="pct">--</b><small>default probability</small></div>
-    </div>
-    <div id="badge" class="badge idle">Awaiting analysis</div>
-    <p id="msg" class="msg">Fill in the form and press <b>Analyze risk</b> to see the result.</p>
-    <div class="stats">
-      <div><small>Threshold</small><b id="thr">--</b></div>
-      <div><small>Decision</small><b id="dec">--</b></div>
-    </div>
-  </aside>
-</main>
+    <aside id="result" class="card res rv" style="--d:.15s">
+      <div class="gauge">
+        <svg viewBox="0 0 200 200">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6e8ec"/><stop offset="1" stop-color="#9da1a8"/></linearGradient></defs>
+          <circle class="track" cx="100" cy="100" r="80" pathLength="100"/>
+          <circle id="ring" class="ring" cx="100" cy="100" r="80" pathLength="100" stroke-dasharray="0 100"/>
+          <line id="tick" x1="100" y1="6" x2="100" y2="32" transform="rotate(0 100 100)"/>
+        </svg>
+        <div class="center"><b id="pct">--</b><small>default probability</small></div>
+      </div>
+      <div id="badge" class="badge idle">Awaiting analysis</div>
+      <p id="msg" class="msg">Fill in the form and press <b>Analyze risk</b> to see the result.</p>
+      <div class="stats2">
+        <div><small>Threshold</small><b id="thr">--</b></div>
+        <div><small>Decision</small><b id="dec">--</b></div>
+      </div>
+    </aside>
+  </div>
+</section>
 
-<footer>Predictions are model estimates, not financial advice.</footer>
+<section id="faq" class="sect narrow">
+  <div class="head rv"><small>FAQ</small><h2>Common questions</h2></div>
+  <details class="rv"><summary>What does the percentage mean?</summary><p>It is the estimated probability that the applicant will default on the loan.</p></details>
+  <details class="rv"><summary>What is the threshold?</summary><p>The cut-off tuned for the model. Scores at or above it are flagged as high risk.</p></details>
+  <details class="rv"><summary>Is this financial advice?</summary><p>No. It is a model estimate and should support, not replace, human judgement.</p></details>
+</section>
+
+<footer><a class="brand" href="#home"><i>◆</i>Risk<b>Lens</b></a><p>Predictions are model estimates, not financial advice.</p></footer>
 <script src="script.js"></script>
 </body>
 </html>
